@@ -15,4 +15,8 @@ public class ClientesClient {
         return restClient.get().uri("/clientes").retrieve().body(String.class);
     }
 
+    public String buscar(String id) {
+        return restClient.get().uri("/clientes/{id}", id).retrieve().body(String.class);
+    }
+
 }

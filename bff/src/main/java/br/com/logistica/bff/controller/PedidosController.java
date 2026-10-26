@@ -1,3 +1,5 @@
+package br.com.logistica.bff.controller;
+
 import br.com.logistica.bff.clients.PedidosClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

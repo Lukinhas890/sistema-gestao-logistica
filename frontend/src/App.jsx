@@ -7,22 +7,48 @@ import './App.css'
 function App() {
   const [clientes, setClientes] = useState([])
     const [detalheEntrega, setDetalheEntrega] = useState(null)
+    const [entregas, setEntregas] = useState([])
+    async function carregarEntregas() {
+        try {
+            const resposta = await fetch('http://localhost:8080/entregas')
+
+            if (!resposta.ok) {
+                throw new Error(`Erro HTTP ${resposta.status}`)
+            }
+
+            const dados = await resposta.json()
+            setEntregas(dados)
+        } catch (erro) {
+            console.error('Não foi possível carregar as entregas:', erro)
+        }
+    }
   return (
       <main>
-        <h1>Clientes</h1>
-        <p>Lista de clientes do sistema de logística.</p>
+        <h1>Acompanhamento de entregas</h1>
+        <p>Consulte as entregas e veja os dados do pedido e do cliente</p>
+          <h2>Clientes</h2>
         <button onClick={carregarClientes}>Carregar clientes</button>
         <ul>
           {clientes.map((cliente) => (
               <li key={cliente.id}>
-                {cliente.nome} — {cliente.email}
+                {cliente.nome}: {cliente.email}
               </li>
           ))}
         </ul>
-          <h2>Detalhe da entrega</h2>
-          <button onClick={carregarDetalheEntrega}>
-              Carregar entrega
-          </button>
+          <h2>Acompanhar entregas</h2>
+          <p>Carregue as entregas e escolha uma para consultar os detalhes.</p>
+          <button onClick={carregarEntregas}>Carregar entregas</button>
+
+          <ul>
+              {entregas.map((entrega, indice) => (
+                  <li key={entrega.id}>
+                      Entrega {indice + 1}: {entrega.status}{' '}
+                      <button onClick={() => carregarDetalheEntrega(entrega.id)}>
+                          Ver detalhes
+                      </button>
+                  </li>
+              ))}
+          </ul>
           {detalheEntrega && (
               <section>
                   <h3>Entrega consultada</h3>
@@ -50,10 +76,10 @@ function App() {
     }
   }
 
-    async function carregarDetalheEntrega() {
+    async function carregarDetalheEntrega(id) {
         try {
             const resposta = await fetch(
-                'http://localhost:8080/entregas/d1111111-1111-1111-1111-111111111111/detalhe'
+                `http://localhost:8080/entregas/${id}/detalhe`
             )
 
             if (!resposta.ok) {

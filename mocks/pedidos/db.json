@@ -22,7 +22,7 @@
     {
       "id": "b2222222-2222-2222-2222-222222222222",
       "clienteId": "33333333-3333-3333-3333-333333333333",
-      "status": "CONFIRMADO",
+      "status": "ENTREGUE",
       "criadoEm": "2026-10-11T14:15:00",
       "enderecoEntrega": {
         "logradouro": "Rua XV de Novembro",
@@ -40,7 +40,7 @@
     {
       "id": "b3333333-3333-3333-3333-333333333333",
       "clienteId": "22222222-2222-2222-2222-222222222222",
-      "status": "CRIADO",
+      "status": "CONFIRMADO",
       "criadoEm": "2026-10-12T16:40:00",
       "enderecoEntrega": {
         "logradouro": "Avenida Brasil",

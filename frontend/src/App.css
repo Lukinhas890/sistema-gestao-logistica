@@ -182,3 +182,20 @@
     border-right-color: var(--border);
   }
 }
+main ul {
+  width: fit-content;
+  max-width: 100%;
+  margin: 24px auto;
+  padding-left: 24px;
+  text-align: left;
+  list-style: none;
+  padding-left: 0;
+}
+
+main li {
+  margin-bottom: 12px;
+}
+
+main li button {
+  margin-left: 12px;
+}
